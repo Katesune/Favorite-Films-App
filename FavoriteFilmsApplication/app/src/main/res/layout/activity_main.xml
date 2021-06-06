@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/main_lin"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/mail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            android:layout_weight="1"
+            android:inputType="textEmailAddress|textNoSuggestions"/>
+        <EditText
+            android:id="@+id/pass"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:onClick="onSignIn"
+            android:id="@+id/login"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Log In with mail"
+            android:layout_marginRight="10sp" />
+
+        <Button
+            android:onClick="onRegister"
+            android:id="@+id/register"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Register with mail"
+            android:layout_marginRight="10sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:onClick="googleSignIn"
+        android:id="@+id/googleauth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LoginGoogle"
+         />
+
+</LinearLayout>
