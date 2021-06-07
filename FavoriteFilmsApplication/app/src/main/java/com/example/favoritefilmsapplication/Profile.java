@@ -35,7 +35,7 @@ public class Profile extends AppCompatActivity {
             name.setText(signInAccount.getDisplayName());
             mail.setText(signInAccount.getEmail());
         }
-        Intent intent = new Intent(Profile.this, MovieActivity.class);
+        Intent intent = new Intent(Profile.this, PopularMovieListActivity.class);
         startActivity(intent);
 
     }

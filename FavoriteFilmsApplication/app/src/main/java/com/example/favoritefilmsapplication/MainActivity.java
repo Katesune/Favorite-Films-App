@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToProfile(FirebaseUser user) {
         if(user!=null){
-            Intent intent = new Intent(MainActivity.this, Profile.class);
+            Intent intent = new Intent(MainActivity.this, AllMovieActivity.class);
             startActivity(intent);
         }
     }
