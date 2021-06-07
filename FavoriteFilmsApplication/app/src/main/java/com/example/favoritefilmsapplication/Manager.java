@@ -13,6 +13,9 @@ public interface Manager {
     @GET("/3/movie/{movie_id}")
     Call<Movie> getFilm(@Path ("movie_id") int movie_id, @Query("api_key") String api_key, @Query("language") String language);
 
+    @GET("/3/movie/{movie_id}/videos")
+    Call<Trailer> getTrailer(@Path ("movie_id") int movie_id, @Query("api_key") String api_key, @Query("language") String language);
+
     @GET("/3/movie/popular")
     Call<Movies> getPopular(@Query("api_key") String api_key,@Query("language") String language, @Query("page") int page);
 

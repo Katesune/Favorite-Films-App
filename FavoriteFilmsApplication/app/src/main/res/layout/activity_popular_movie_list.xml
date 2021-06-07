@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/scroll"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scroll"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".PopularMovieListActivity"
+    android:id="@+id/all_movies">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:id="@+id/all_movies">
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="Популярные фильмы"
+        android:textSize="22sp"
+        style="@style/headerText_title"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:text="Популярные фильмы"
-            android:textSize="18sp"
-            style="@style/headerText_title"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_custom_background"
+        android:id="@+id/listview"
+        android:textSize="18sp"/>
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/my_custom_background"
-            android:id="@+id/listview"
-            android:textSize="18sp"/>
-
-    </LinearLayout>
+</LinearLayout>
 
 </ScrollView>

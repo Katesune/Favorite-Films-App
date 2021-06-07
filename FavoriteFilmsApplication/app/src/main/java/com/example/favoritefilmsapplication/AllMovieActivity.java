@@ -98,6 +98,9 @@ public class AllMovieActivity extends AppCompatActivity {
 
             ImageView poster = new_movie.findViewById(R.id.poster);
 
+            TextView id = new_movie.findViewById(R.id.id);
+            title.setText("Название: " + String.valueOf(m.id));
+
             title.setText("Название: " + m.title);
             original_title.setText("Полное Название: " + m.original_title);
             release_date.setText("Дата релиза: " + m.release_date);
@@ -127,6 +130,7 @@ public class AllMovieActivity extends AppCompatActivity {
             @Override
             protected Movies doInBackground(Void... voids) {
                 Call<Movies> getFilmCall = getFilmsCall();
+
                 return getImageTask(getFilmCall);
             }
 

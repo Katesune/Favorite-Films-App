@@ -10,6 +10,7 @@ public class Movie {
     String release_date;
     double popularity;
     Genre[] genres = null;
+    Boolean video = null;
 
     public class Genre {
         int id;

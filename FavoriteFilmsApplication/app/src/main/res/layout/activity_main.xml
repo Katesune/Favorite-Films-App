@@ -56,9 +56,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="140dp"
                 android:layout_marginLeft="8dp"
-                android:background="@drawable/login_back"
-
-                >
+                android:background="@drawable/login_back">
 
 
                 <LinearLayout
@@ -148,7 +146,7 @@
                             style="@style/loginButton2"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="@dimen/loginViewsMargin"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginRight="50dp"
                             android:onClick="onRegister"
                             android:text="Register with email" />
 

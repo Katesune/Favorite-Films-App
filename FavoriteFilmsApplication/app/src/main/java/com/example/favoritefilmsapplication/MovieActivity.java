@@ -2,9 +2,11 @@ package com.example.favoritefilmsapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +30,7 @@ public class MovieActivity extends AppCompatActivity {
     Gson gson = new GsonBuilder().create();
     String api_key = "2afab14a5f39728f8f613d627e5dd9bb";
     int movie_id;
+    Trailer trailer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +39,30 @@ public class MovieActivity extends AppCompatActivity {
 
         ln = (LinearLayout) findViewById(R.id.moviie_lin);
 
-        String api_key = "2afab14a5f39728f8f613d627e5dd9bb";
-
         movie_id = getIntent().getIntExtra("movie_id", 0);
+        movie_id = 337404 ;
 
         getImagesTask task = new getImagesTask();
         task.execute();
     }
 
-    public Call<Movie> getFilmCall () {
+    public void gotoProfile (View v) {
+        Intent intent = new Intent(MovieActivity.this, Profile.class);
+        startActivity(intent);
+    }
+
+    public void gotoTrailer (View v) {
+        String url_video =  "https://www.themoviedb.org/video/play?key="+trailer.results[0].key;
+
+        Log.d("mytag",url_video);
+        Uri uri = Uri.parse(url_video);
+        String action = Intent.ACTION_VIEW;
+
+        Intent videoIntent = new Intent(action, uri);
+        startActivity(videoIntent);
+    }
+
+    public Manager getManager () {
         String url = "https://api.themoviedb.org/";
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -54,11 +72,10 @@ public class MovieActivity extends AppCompatActivity {
 
         Manager api = retrofit.create(Manager.class);
 
-        Call <Movie> call_film = api.getFilm(337404, api_key, "ru");
-        return call_film;
+        return api;
     }
 
-    public void setPopularFilms(Movie m) {
+    public void setFilm(Movie m) {
         LayoutInflater ltInflater = getLayoutInflater();
 
             String url = "https://www.themoviedb.org/t/p/w1280/";
@@ -79,11 +96,13 @@ public class MovieActivity extends AppCompatActivity {
             overview.setText("Описание: " + m.overview);
             popularity.setText("Популярность: " + String.valueOf(m.popularity));
 
-            String genres_s = "";
-            for (int i=0; i<m.genres.length; i++) {
-                genres_s += m.genres[i].name + " ";
+            if (m.genres!=null) {
+                String genres_s = "";
+                for (int i = 0; i < m.genres.length; i++) {
+                    genres_s += m.genres[i].name + " ";
+                }
+                genres.setText("Жанры: " + genres_s);
             }
-            genres.setText("Жанры: " + genres_s);
 
             if (m.backdrop_path != null) {
                 Uri uri_pic = Uri.parse(url + m.backdrop_path);
@@ -104,18 +123,20 @@ public class MovieActivity extends AppCompatActivity {
 
         @Override
         protected Movie doInBackground(Void... voids) {
-            Call<Movie> getFilmCall = getFilmCall();
-            return getImageTask(getFilmCall);
+            Manager api = getManager();
+            Call <Movie> call_film = api.getFilm(movie_id, api_key, "ru");
+            return getImageTask(call_film);
         }
 
         @Override
-        protected void onPostExecute(Movie result) {
-            setPopularFilms(result);
-        }
+        protected void onPostExecute(Movie result) { setFilm(result); }
 
         private Movie getImageTask(Call<Movie> getFilmCall) {
+            Manager api = getManager();
+            Call <Trailer> call_trailer = api.getTrailer(movie_id, api_key, "ru");
             try {
                 retrofit2.Response<Movie> response =  getFilmCall.execute();
+                trailer =  call_trailer.execute().body();
                 return response.body();
             } catch (IOException e) {
                 e.printStackTrace();

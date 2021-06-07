@@ -94,6 +94,8 @@ public class PopularMovieListActivity extends AppCompatActivity {
 
             ImageView poster = new_movie.findViewById(R.id.poster);
 
+            TextView id = new_movie.findViewById(R.id.id);
+            title.setText("Название: " + String.valueOf(m.id));
 
             title.setText("Название: "+ m.title);
             original_title.setText("Полное Название: "+ m.original_title);

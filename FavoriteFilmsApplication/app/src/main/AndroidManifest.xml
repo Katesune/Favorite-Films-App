@@ -10,7 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FavoriteFilmsApplication">
+        android:theme="@style/Theme.FavoriteFilmsApplication"
+        android:networkSecurityConfig="@xml/security_config"
+        android:usesCleartextTraffic="true">
         <activity android:name=".MovieActivity"></activity>
         <activity android:name=".AllMovieActivity" />
         <activity android:name=".PopularMovieListActivity" />
