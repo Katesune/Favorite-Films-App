@@ -90,19 +90,30 @@
                         android:text="favorites"
                         style="@style/text_header2"
                         android:drawableLeft="@drawable/ic_star"
-                        />
+                        android:onClick="addToFav"/>
 
-                    <TextView
+                    <Button
+                        android:id="@+id/simpleButton2"
+                        android:layout_marginLeft="10dp"
                         android:layout_width="90dp"
                         android:layout_height="20dp"
-                        android:background="@color/primaryTextColor"
-                        android:id="@+id/id"
-                        android:text="title"
-                        android:onClick="goToFilm"
-                        android:textColor="#00000000"/>
+                        android:background="#fff"
+                        android:text="watched"
+                        style="@style/text_header2"
+                        android:drawableLeft="@drawable/ic_view" />
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="55dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="#fff"
+                    android:id="@+id/id"
+                    style="@style/text_header2"
+                    android:text="see more"
+                    android:onClick="goToFilm"
+                    android:textColor="#FF725E"/>
             </LinearLayout>
+
         </LinearLayout>
 
         <TextView

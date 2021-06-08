@@ -6,80 +6,129 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/profile_lin">
+        <RelativeLayout
+            style="@style/parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:weightSum="12">
+
+            <LinearLayout
+                style="@style/parent"
+                android:background="@drawable/header"
+                android:orientation="vertical"
+                android:layout_weight="3">
+
+                <ImageView
+                    style="@style/parent"
+                    android:background="@drawable/ic_login_bk"
+                    android:contentDescription="login background"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/headerText"
+            android:layout_gravity="center"
+            android:text="Name"
+            android:layout_marginTop="30dp"/>
 
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="97dp"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/mail"
+            style="@style/headerText"
+            android:layout_gravity="center"
+            android:text="mail"
+            android:layout_marginTop="60dp"/>
+
+    <LinearLayout
+
+        android:layout_width="395dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/login_back">
 
 
-    <TextView
-        android:id="@+id/mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="TextView"/>
+    <LinearLayout
+        style="@style/linearParent">
 
-    <Button
-        android:id="@+id/goToList"
-        android:onClick="goToList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="go To List" />
-
-    <Button
-        android:id="@+id/logout"
-        android:onClick="logOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"/>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/fav_movies_butt"
-            android:onClick="showFavMovies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Избранное"/>
+            android:id="@+id/logout"
+            android:onClick="logOut"
+            style="@style/headerText_log"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#fff"
+
+            android:text="Logout"/>
 
         <Button
-            android:id="@+id/watch_movies_butt"
-            android:onClick="showWatchMovies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Просмотренное"/>
+            android:id="@+id/goToList"
+            android:onClick="goToList"
+            style="@style/loginButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:text="go To List" />
 
-        <Button
-            android:id="@+id/wait_movies_butt"
-            android:onClick="showWaitMovies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Лист ожидания"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/fav_movies_butt"
+                style="@style/loginButton2"
+                android:layout_width="124dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:layout_marginRight="5dp"
+                android:onClick="showFavMovies"
+                android:text="Favorites" />
+
+            <Button
+                android:id="@+id/wait_movies_butt"
+                style="@style/loginButton2"
+                android:layout_width="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:layout_marginRight="5dp"
+                android:onClick="showWaitMovies"
+                android:text="List" />
+
+            <Button
+                android:id="@+id/watch_movies_butt"
+                android:onClick="showWatchMovies"
+                style="@style/loginButton2"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:text="Watched" />
+
+
+        </LinearLayout>
     </LinearLayout>
+    </LinearLayout>
+        </RelativeLayout>
+
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/profile_listview"
             android:textSize="18sp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/my_custom_background"/>
 
     </LinearLayout>

@@ -2,11 +2,13 @@ package com.example.favoritefilmsapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,6 +66,41 @@ public class PopularMovieListActivity extends AppCompatActivity {
 
     }
 
+    public void goToFilm(View v) {
+        Intent intent = new Intent(PopularMovieListActivity.this, MovieActivity.class);
+        TextView butt_v = (TextView)v;
+        String movie_id = butt_v.getText().toString();
+        intent.putExtra("movie_id", Integer.parseInt(movie_id));
+        startActivity(intent);
+    }
+
+    public void addToFav(View v) {
+        Button butt = (Button)v;
+        String str_id = butt.getText().toString();
+        int id = Integer.parseInt(str_id);
+        addNewItem(id, 1);
+    }
+
+    public void addNewItem(int id, int category) {
+        UserMoviesDB db = UserMoviesDB.create(this, false);
+        UsersDB users_db;
+
+        new Thread() {
+            @Override
+            public void run() {
+                int film_id = db.movie_manager().getFilmId(id);
+                if (film_id==0) {
+                    int count = db.movie_manager().getNumberOfRows() + 1;
+                    db.movie_manager().insert(new MovieList(count, id, 1, category, "06.06.2021"));
+                    Log.d("mytag", "insert");
+                } else {
+                    db.movie_manager().delete(new MovieList(film_id, id, 1, category, "06.06.2021"));
+                    Log.d("mytag", "delete");
+                }
+            }
+        }.start();
+    }
+
     public Call<Movies> getFilmSearch (String film) {
         String url = "https://api.themoviedb.org/";
 
@@ -95,7 +132,10 @@ public class PopularMovieListActivity extends AppCompatActivity {
             ImageView poster = new_movie.findViewById(R.id.poster);
 
             TextView id = new_movie.findViewById(R.id.id);
-            title.setText("Название: " + String.valueOf(m.id));
+            id.setText(Integer.toString(m.id));
+
+            Button fav = new_movie.findViewById(R.id.simpleButton1);
+            fav.setText(Integer.toString(m.id));
 
             title.setText("Название: "+ m.title);
             original_title.setText("Полное Название: "+ m.original_title);

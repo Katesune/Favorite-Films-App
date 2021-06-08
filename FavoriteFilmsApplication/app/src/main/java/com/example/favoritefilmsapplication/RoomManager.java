@@ -14,8 +14,14 @@ public interface RoomManager {
     @Query("SELECT * FROM movies ORDER BY _id")
     List<MovieList> selectAll();
 
-    @Query("SELECT * FROM movies WHERE _id=:id")
-    MovieList findById(int id);
+//    @Query("SELECT * FROM movies WHERE _id=:_id")
+//    MovieList findById(int _id);
+
+    @Query("SELECT COUNT(_id) FROM movies WHERE film_id=:id")
+    int getNumberOfId(int id);
+
+    @Query("SELECT _id FROM movies WHERE film_id=:id")
+    int getFilmId(int id);
 
     @Query("SELECT COUNT(_id) FROM movies")
     int getNumberOfRows();

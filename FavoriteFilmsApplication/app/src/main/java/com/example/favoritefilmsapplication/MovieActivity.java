@@ -40,7 +40,7 @@ public class MovieActivity extends AppCompatActivity {
         ln = (LinearLayout) findViewById(R.id.moviie_lin);
 
         movie_id = getIntent().getIntExtra("movie_id", 0);
-        movie_id = 337404 ;
+        //movie_id = 337404 ;
 
         getImagesTask task = new getImagesTask();
         task.execute();
